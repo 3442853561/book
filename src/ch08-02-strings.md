@@ -100,7 +100,7 @@ let hello = "Hola";
 
 ### Updating a String
 
-A `String` can can grow in size and its contents can change just like the
+A `String` can grow in size and its contents can change just like the
 contents of a `Vec`, by pushing more data into it. In addition, `String` has
 concatenation operations implemented with the `+` operator for convenience.
 
@@ -115,7 +115,7 @@ s.push_str("bar");
 
 `s` will contain "foobar" after these two lines. The `push_str` method takes a
 string slice because we don't necessarily want to take ownership of the
-argument. For example, it would be unfortunate if we weren't able to use `s2`
+parameter. For example, it would be unfortunate if we weren't able to use `s2`
 after appending its contents to `s1`:
 
 ```rust
@@ -124,7 +124,7 @@ let s2 = String::from("bar");
 s1.push_str(&s2);
 ```
 
-The `push` method is defined to take a single character as an argument and add
+The `push` method is defined to have a single character as a parameter and add
 it to the `String`:
 
 ```rust
@@ -162,12 +162,12 @@ call this method with `String` values. This signature gives us the clues we
 need to understand the tricky bits of the `+` operator.
 
 First of all, `s2` has an `&`, meaning that we are adding a *reference* of the
-second string to the first string. This is because of the `s` argument in the
+second string to the first string. This is because of the `s` parameter in the
 `add` function: we can only add a `&str` to a `String`, we can't add two
 `String`s together. Remember back in Chapter 4 when we talked about how
 `&String` will coerce to `&str`: we write `&s2` so that the `String` will
 coerce to the proper type, `&str`. Because this method does not take ownership
-of the argument, `s2` will still be valid after this operation.
+of the parameter, `s2` will still be valid after this operation.
 
 Second, we can see in the signature that `add` takes ownership of `self`,
 because `self` does *not* have an `&`. This means `s1` in the above example
@@ -218,7 +218,7 @@ have in the next paragraph without repeating the `println!` content too much?
 This code will also set `s` to "tic-tac-toe". The `format!` macro works in the
 same way as `println!`, but instead of printing the output to the screen, it
 returns a `String` with the contents. This version is much easier to read, and
-also does not take ownership of any of its arguments.
+also does not take ownership of any of its parameters.
 
 ### Indexing into Strings
 
@@ -253,7 +253,7 @@ A `String` is a wrapper over a `Vec<u8>`. Let's take a look at some of our
 properly-encoded UTF-8 example strings from before. First, this one:
 
 ```rust
-let len = "Hola".len();
+let len = String::from("Hola").len();
 ```
 
 In this case, `len` will be four, which means the `Vec` storing the string
@@ -261,7 +261,7 @@ In this case, `len` will be four, which means the `Vec` storing the string
 UTF-8. What about this example, though?
 
 ```rust
-let len = "Здравствуйте".len();
+let len = String::from("Здравствуйте").len();
 ```
 
 A person asked how long the string is might say 12. However, Rust's answer

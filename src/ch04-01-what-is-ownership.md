@@ -364,14 +364,16 @@ You’ll get an error like this because Rust prevents you from using the
 invalidated reference:
 
 ```text
-5:22 error: use of moved value: `s1` [E0382]
-println!("{}", s1);
-               ^~
-5:24 note: in this expansion of println! (defined in <std macros>)
-3:11 note: `s1` moved here because it has type `collections::string::String`,
-which is moved by default
- let s2 = s1;
-     ^~
+error[E0382]: use of moved value: `s1`
+ --> src/main.rs:4:27
+  |
+3 |     let s2 = s1;
+  |         -- value moved here
+4 |     println!("{}, world!",s1);
+  |                           ^^ value used here after move
+  |
+  = note: move occurs because `s1` has type `std::string::String`,
+which does not implement the `Copy` trait
 ```
 
 If you’ve heard the terms “shallow copy” and “deep copy” while working with
@@ -415,7 +417,7 @@ println!("s1 = {}, s2 = {}", s1, s2);
 ```
 
 This works just fine and is how you can explicitly produce the behavior shown
-in Figure 4-4, where the heap data *does* get copied.
+in Figure 4-5, where the heap data *does* get copied.
 
 When you see a call to `clone`, you know that some arbitrary code is being
 executed and that code may be expensive. It’s a visual indicator that something

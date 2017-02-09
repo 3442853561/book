@@ -50,10 +50,18 @@ The lines execute in the order in which they appear in the `main` function.
 First, the “Hello, world!” message prints, and then `another_function` is
 called and its message is printed.
 
-### Function Arguments
+### Function Parameters
 
-Functions can also take arguments. The following rewritten version of
-`another_function` shows what arguments look like in Rust:
+Functions can also be defined to have *parameters*, which are special variables
+that are part of a function's signature. When a function has parameters, we can
+provide it with concrete values for those parameters. Technically, the concrete
+values are called *arguments*, but in casual conversation people tend to use
+the words "parameter" and "argument" interchangeably for either the variables in
+a function's definition or the concrete values passed in when you call a
+function.
+
+The following rewritten version of `another_function` shows what parameters
+look like in Rust:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -76,18 +84,18 @@ $ cargo run
 The value of x is: 5
 ```
 
-The declaration of `another_function` has one argument named `x`. The type of
+The declaration of `another_function` has one parameter named `x`. The type of
 `x` is specified as `i32`. When `5` is passed to `another_function`, the
 `println!` macro puts `5` where the pair of curly braces were in the format
 string.
 
-In function signatures, you *must* declare the type. This is a deliberate
-decision in Rust’s design: requiring type annotations in function definitions
-means the compiler almost never needs you to use them elsewhere in the code to
-figure out what you mean.
+In function signatures, you *must* declare the type of each parameter. This is
+a deliberate decision in Rust’s design: requiring type annotations in function
+definitions means the compiler almost never needs you to use them elsewhere in
+the code to figure out what you mean.
 
-When you want a function to have multiple arguments, separate them inside the
-function signature with commas, like this:
+When you want a function to have multiple parameters, separate the parameter
+declarations with commas, like this:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -102,10 +110,10 @@ fn another_function(x: i32, y: i32) {
 }
 ```
 
-This example creates a function with two arguments, both of which are `i32`
-types. If your function has multiple arguments, the arguments don’t need to be
-the same type, but they just happen to be in this example. The function then
-prints out the values of both of its arguments.
+This example creates a function with two parameters, both of which are `i32`
+types. The function then prints out the values in both of its parameters. Note
+that function parameters don't all need to be the same type - they just happen
+to be in this example.
 
 Let’s try running this code. Replace the program currently in your *function*
 project’s *src/main.rs* file with the preceding example, and run it using
@@ -119,8 +127,8 @@ The value of x is: 5
 The value of y is: 6
 ```
 
-Because `5` is passed as the `x` argument and `6` is passed as the `y`
-argument, the two strings are printed with these values.
+Because we called the function with `5` as the value for `x` and `6` as the
+value for `y`, the two strings are printed using those values.
 
 ### Function Bodies
 
@@ -274,7 +282,7 @@ that line is the same as the following:
 let x = 5;
 ```
 
-Second, the `five` function requires no arguments and defines the type of the
+Second, the `five` function has no parameters and defines the type of the
 return value, but the body of the function is a lonely `5` with no semicolon
 because it’s an expression whose value we want to return. Let’s look at another
 example:

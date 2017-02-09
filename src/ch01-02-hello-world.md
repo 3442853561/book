@@ -61,7 +61,7 @@ $ ./main
 Hello, world!
 ```
 
-On Windows, just replace `./main` with `.\main.exe`. Regardless of your
+On Windows, run `.\main.exe` instead of `./main`. Regardless of your
 operating system, you should see the string `Hello, world!` print to the
 terminal. If you did, then congratulations! You've officially written a Rust
 program. That makes you a Rust programmer! Welcome.
@@ -79,9 +79,9 @@ fn main() {
 
 These lines define a *function* in Rust. The `main` function is special: it's
 the first thing that is run for every executable Rust program. The first line
-says, “I’m declaring a function named `main` that takes no arguments and
-returns nothing.” If there were arguments, they would go inside the parentheses,
-`(` and `)`.
+says, “I’m declaring a function named `main` that has no parameters and returns
+nothing.” If there were parameters, their names would go inside the
+parentheses, `(` and `)`.
 
 Also note that the function body is wrapped in curly braces, `{` and `}`. Rust
 requires these around all function bodies. It's considered good style to put
